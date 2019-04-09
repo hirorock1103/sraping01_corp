@@ -139,5 +139,4 @@ for item in likeUserIdList:
         target.click()
 
     time.sleep(random.randint(randIntFrom, randIntTo))
-    # target.click()
-
+# target.click()

@@ -215,5 +215,4 @@ if followerButtons.__len__() > 11:
                 log(commnt)
             except:
                 commnt = "Error failed to get last element"
-                log(commnt)
-
+log(commnt)

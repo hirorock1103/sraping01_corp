@@ -10,6 +10,7 @@ query = "CREATE TABLE IF NOT EXISTS SampleGetPostList(" \
         "id integer primary key AUTOINCREMENT, " \
         "url text, " \
         "word text, " \
+        "post_date text, " \
         "h_tags text, " \
         "post_user_id text)"
 cursor.execute(query)
@@ -95,7 +96,9 @@ label.pack()
 label = tkinter.Label(tab_b, text="【件数】" + str(postNumberOfResult) + "件")
 label.pack()
 
-tree = ttk.Treeview(tab_b)
+tree = ttk.Treeview(tab_b, selectmode='browse')
+tree.pack(side='left')
+
 
 # 列インデックスの作成
 tree["columns"] = (1, 2, 3, 4, 5)
