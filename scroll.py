@@ -19,7 +19,7 @@ cursor.execute(query)
 driver = webdriver.Chrome(r"C:\Users\USER\Desktop\chromedriver_win32 (2)/chromedriver.exe") # さっきDLしたchromedriver.exeを使う
 fPath = r"C:\Users\USER\Desktop\data"
 # https://teratail.com/questions/131027 permission problem
-targetWord = "アイドル"
+targetWord = "旅行"
 
 TOP_URL = "https://www.instagram.com/explore/tags/" + targetWord + "/"
 
