@@ -15,30 +15,35 @@ query = "CREATE TABLE IF NOT EXISTS SampleGetPostList(" \
         "post_user_id text)"
 cursor.execute(query)
 
+
+# ****** SQL *******
 cursor.execute('SELECT count(*) FROM SampleGetPostList')
 postNumberOfResult = 0
 for row in cursor:
     postNumberOfResult = (row[0])
 
+# ****** root *******
 win = tk.Tk()
 win.geometry('1000x500')
 win.resizable(width=0, height=0)
 
-title = "投稿リスト 取得件数(" + str(postNumberOfResult) + "件)"
-label = tk.Label(win, text=title)
+# ****** widget *******
+titleBuff = StringVar()
+titleBuff.set("投稿リスト 取得件数(" + str(postNumberOfResult) + "件)")
+label0 = tk.Label(win, textvariable=titleBuff)
 
-label.pack(padx=5, pady=5, anchor=tk.W)
+label0.pack(padx=5, pady=5, anchor=tk.W)
 
 title = "keyword"
-label = tk.Label(win, text=title)
-label.pack(padx=5, pady=0, anchor=tk.W)
+label1 = tk.Label(win, text=title)
+label1.pack(padx=5, pady=0, anchor=tk.W)
 
 form1 = StringVar()
 entry = Entry(win, textvariable=form1).pack(padx=8, pady=5, anchor=tk.W)
 
 title = "#hashtag"
-label = tk.Label(win, text=title)
-label.pack(padx=5, pady=0, anchor=tk.W)
+label2 = tk.Label(win, text=title)
+label2.pack(padx=5, pady=0, anchor=tk.W)
 
 form2 = StringVar()
 entry = Entry(win, textvariable=form2).pack(padx=8, pady=5, anchor=tk.W)
@@ -48,7 +53,16 @@ entry = Entry(win, textvariable=form2).pack(padx=8, pady=5, anchor=tk.W)
 def button1_clicked():
     print(form1.get())
     print(form2.get())
-    win.mainloop()
+    cursor.execute('SELECT count(*) FROM SampleGetPostList')
+    for row in cursor:
+        number = (row[0])
+    titleBuff.set("投稿リスト 取得件数(" + str(number) + "件)")
+
+
+def refresh_table():
+    cursor.execute('SELECT count(*) FROM SampleGetPostList')
+    print("s")
+    win.after(3000, refresh_table)
 
 
 button1 = tk.Button(
@@ -59,7 +73,7 @@ button1 = tk.Button(
 button1.pack(padx=5, pady=5, anchor=tk.W)
 
 
-# #####  MAKE TABLE  #####
+# ****** TABLE *******
 tree = ttk.Treeview(win, selectmode='browse')
 tree.pack(side='left')
 
@@ -106,3 +120,4 @@ for row in cursor:
 con.commit()
 
 win.mainloop()
+
